@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE tiles-definitions PUBLIC 
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="default" template="/layouts/layout.jsp">
+		<put-attribute name="title" value="" type="string" />
+		<put-attribute name="menuId" value="-1" type="string" />
+	</definition>
+
+	<definition name="login" template="/layouts/layout.login.jsp">
+	   <put-attribute name="workspace" value="" type="string" />
+	</definition>
+
+	<definition name="content" template="/layouts/layout.content.jsp">
+		<put-attribute name="position" value=""	type="string" />
+	</definition>
+	
+</tiles-definitions> 

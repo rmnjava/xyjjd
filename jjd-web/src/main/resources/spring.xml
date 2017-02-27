@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	">
+    <!--启用注解 -->
+    <context:annotation-config />
+
+    <!-- 使用annotation 自动注册bean -->
+    <context:component-scan base-package="com.redstar.jjd">
+        <context:exclude-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- 引入属性文件Hibernate属性配置 -->
+    <context:property-placeholder location="classpath:database.properties" />
+    
+<!--     Shiro 配置 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="sessionMode" value="native"></property>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="realm" ref="shiroDbRealm" />
+    </bean>
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO">
+            <bean class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO"/>
+        </property>
+        <property name="sessionValidationScheduler">
+            <bean class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler"/>
+        </property>
+        <property name="sessionIdCookie">
+            <bean class="org.apache.shiro.web.servlet.SimpleCookie">
+                <property name="name" value="WSESSIONID"/>
+            </bean>
+        </property>
+        <property name="globalSessionTimeout" value="1800000"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="deleteInvalidSessions" value="true"/>
+    </bean>
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+    
+    <!-- Shiro Filter -->
+    <bean id="formCaptchaFilter" class="com.redstar.jjd.security.CaptchaFormAuthenticationFilter"/>
+    
+    <bean id="shiroDbRealm" class="com.redstar.jjd.security.ShiroDbRealm" />
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/login" />
+        <property name="successUrl" value="/admin/index.do?method=list" />
+        <property name="unauthorizedUrl" value="/login" />
+        <property name="filters">
+            <map>
+                <entry key="authc" value-ref="formCaptchaFilter"/>
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                # everything else requires authentication:
+                /login = authc
+                /logout = logout
+                /static/images/** = anon
+                /static/js/** = anon
+                /static/css/** = anon
+                /** = user
+            </value>
+        </property>
+    </bean>
+
+<!--     数据源配置, 使用DBCP数据库连接池 -->
+<!--     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!--         Connection Info -->
+<!--         <property name="driverClassName" value="${driverClassName}"/> -->
+<!--         <property name="url" value="${url}"/> -->
+<!--         <property name="username" value="${username}"/> -->
+<!--         <property name="password" value="${password}"/> -->
+
+<!--         Connection Pooling Info -->
+<!--         <property name="maxActive" value="${dbcp.maxActive}"/> -->
+<!--         <property name="maxIdle" value="${dbcp.maxIdle}"/> -->
+<!--         <property name="defaultAutoCommit" value="false"/> -->
+<!--         连接Idle一个小时后超时 -->
+<!--         <property name="timeBetweenEvictionRunsMillis" value="3600000"/> -->
+<!--         <property name="minEvictableIdleTimeMillis" value="3600000"/> -->
+<!--     </bean> -->
+
+<!--     Activiti begin -->
+<!--     创建一个流程引擎的配置对象 -->
+<!--     <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration"> -->
+<!--         <property name="dataSource" ref="dataSource"/> -->
+<!--         设置数据库schema的更新方式 -->
+<!--         <property name="databaseSchemaUpdate" value="true"/> -->
+<!--          是否启动jobExecutor -->
+<!--         <property name="jobExecutorActivate" value="false"/> -->
+<!--         <property name="transactionManager" ref="transactionManager" /> -->
+<!--         <property name="activityFontName"  value="宋体" />   -->
+<!--         <property name="labelFontName"  value="宋体" />   -->
+<!--         <property name="history" value="full"/> -->
+<!--         <property name="processDefinitionCacheLimit" value="10"/> -->
+
+<!--         mail -->
+<!--         <property name="mailServerHost" value="localhost"/> -->
+<!--         <property name="mailServerUsername" value="kafeitu"/> -->
+<!--         <property name="mailServerPassword" value="000000"/> -->
+<!--         <property name="mailServerPort" value="2025"/> -->
+
+<!--         自动部署 -->
+<!--         <property name="deploymentResources"> -->
+<!--             <list> -->
+<!--                 <value>classpath*:/deployments/*</value> -->
+<!--             </list> -->
+<!--         </property> -->
+
+
+<!--     </bean> -->
+    
+<!--     创建一个流程引擎bean -->
+<!--     <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"> -->
+<!--         <property name="processEngineConfiguration" ref="processEngineConfiguration"/> -->
+<!--     </bean> -->
+
+<!--     创建activiti提供的各种服务 -->
+<!--     工作流仓储服务 -->
+<!--     <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/> -->
+<!--     工作流运行服务 -->
+<!--     <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService"/> -->
+<!--     <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/> -->
+<!--     工作流唯一服务 -->
+<!--     <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/> -->
+<!--      工作流任务服务 -->
+<!--     <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/> -->
+<!--      工作流历史数据服务 -->
+<!--     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/> -->
+<!--       工作流管理服务 -->
+<!--     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService"/> -->
+<!--     Activiti end -->
+    
+<!--     创建一个事物管理器 -->
+<!--     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+<!--         <property name="dataSource" ref="dataSource" /> -->
+<!--     </bean> -->
+</beans>

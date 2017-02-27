@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE tiles-definitions PUBLIC 
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="system.login" extends="login">
+		<put-attribute name="workspace" value="/WEB-INF/view/login.jsp" />
+	</definition>
+	
+	<definition name="system.index" extends="default">
+        <put-attribute name="position" value="首页" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/index.jsp" />
+    </definition>
+
+    <!-- user page config -->
+    <definition name="user.online.list" extends="default">
+        <put-attribute name="position" value="申请家居贷信息管理>>在线持卡分期信息" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/homeloan/onlinePeriod.jsp" />
+    </definition>
+    <definition name="user.special.list" extends="default">
+        <put-attribute name="position" value="申请家居贷信息管理>>线下专项申请信息" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/homeloan/specialLoan.jsp" />
+    </definition>
+    
+    <definition name="user.list" extends="default">
+	    <put-attribute name="position" value="申请家居贷信息管理>>星易家居贷APP>>农行在线分期" type="string" />
+	    <put-attribute name="workspace" value="/WEB-INF/view/user/index.jsp" />
+    </definition>
+    
+    <definition name="user.nocard.list" extends="default">
+	    <put-attribute name="position" value="申请家居贷信息管理>>星易家居贷APP>>专项贷款" type="string" />
+	    <put-attribute name="workspace" value="/WEB-INF/view/user/index2.jsp" />
+    </definition>
+    
+    <definition name="user.single.list" extends="default">
+        <put-attribute name="position" value="农行专项活动>>9月金可儿分期成功客户" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/user/singleProduct.jsp" />
+    </definition>
+    
+    <definition name="user.wechat.list" extends="default">
+        <put-attribute name="position" value="申请家居贷信息管理>>星易家居贷微信>>农行在线分期" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/user/wechatList.jsp" />
+    </definition>
+    
+    <definition name="user.wechatspecial.list" extends="default">
+        <put-attribute name="position" value="申请家居贷信息管理>>星易家居贷微信>>专项贷款" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/user/wechatList_special.jsp" />
+    </definition>
+    
+    <definition name="user.detailLoan" extends="content">
+        <put-attribute name="workspace" value="/WEB-INF/view/homeloan/loanDetail.jsp" />
+    </definition>
+    
+    
+    <!-- 重置密码 -->
+    <definition name="user.resetpwd" extends="default">
+        <put-attribute name="position" value="重置密码" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/operator/resetPassword.jsp" />
+    </definition>
+    
+    <!-- role page config -->
+    <definition name="role.list" extends="default">
+	    <put-attribute name="position" value="角色管理>>角色管理" type="string" />
+	    <put-attribute name="workspace" value="/WEB-INF/view/system/role_list.jsp" />
+    </definition>
+    
+    <definition name="role.view" extends="content">
+	    <put-attribute name="position" value="系统管理>>角色管理view" type="string" />
+	    <put-attribute name="workspace" value="/WEB-INF/view/system/role_view.jsp"/>
+    </definition> 
+    <definition name="role.update" extends="content">
+        <put-attribute name="position" value="系统管理>>角色管理update" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/system/role_update.jsp" />
+    </definition>
+    <definition name="role.create" extends="content">
+        <put-attribute name="position" value="系统管理>>角色管理create" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/system/role_create.jsp" />
+    </definition>
+    
+    <!-- operator page config -->
+    <definition name="operator.list" extends="default">
+	    <put-attribute name="position" value="账户管理>>账户管理" type="string" />
+	    <put-attribute name="workspace" value="/WEB-INF/view/operator/operator_list.jsp" />
+    </definition>
+    
+<!--     <definition name="operator.view" extends="content"> -->
+<!--     <put-attribute name="position" value="系统管理>>角色管理view" type="string" /> -->
+<!--     <put-attribute name="workspace" value="/WEB-INF/view/system/role_view.jsp"/> -->
+<!--     </definition>  -->
+    <definition name="operator.update" extends="content">
+        <put-attribute name="position" value="系统管理>>账户管理update" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/operator/operator_update.jsp" />
+    </definition>
+    <definition name="operator.create" extends="content">
+        <put-attribute name="position" value="系统管理>>账户管理create" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/operator/operator_create.jsp" />
+    </definition>
+    
+    <!-- dept page config -->
+    <definition name="dept.list" extends="default">
+        <put-attribute name="position" value="部门管理>>部门管理" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/department/dept_list.jsp" />
+    </definition>
+
+    
+    <!-- store page config -->
+    <definition name="store.list" extends="default">
+        <put-attribute name="position" value="商场管理>>商场管理" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/store/store_list.jsp" />
+    </definition>
+    
+    <!-- bank page config -->
+    <definition name="bank.list" extends="default">
+        <put-attribute name="position" value="金融机构管理>>金融机构管理" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/bank/bankproduct_list.jsp" />
+    </definition>
+    
+    <!-- special loan config -->
+    <definition name="loan.store.add" extends="content">
+        <put-attribute name="position" value="专项申请管理>>商场补录" type="string" />
+        <put-attribute name="workspace" value="/WEB-INF/view/homeloan/storeLoan.jsp" />
+    </definition>
+</tiles-definitions> 

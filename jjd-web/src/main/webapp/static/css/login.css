@@ -1,0 +1,14 @@
+body{overflow:hidden;background:#d6dee0;}
+.login{background:url(../images/login/bg02.png?) repeat-x;}
+.login-c{position:relative;width:1220px;height:800px;background:url(../images/login/bg.jpg?) no-repeat;margin:0 auto;}
+.login-c .logo01{position:absolute;top:30px;left:125px;}
+.login-c .logo02{position:absolute;top:30px;left:256px;}
+.login-c .link{position:Absolute;right:222px;top:19px;font-size:16px;color:#333;}
+.login-c .link02{right:146px;}
+.login-c .input-wrap{position:Absolute;top:278px;left:433px;width:365px;height:40px;border:solid 1px #80909b;background:#fff;}
+.login-c .input-wrap02{top:360px;}
+.login-c .input-wrap img{border-right:solid 1px #80909b;}
+.login-c  input{position:absolute;top:0;height:34px;line-height:34px;width:312px;border:none;padding-left:10px;font-size:16px;}
+.login-c input#login{width:115px;height:36px;background:url(../images/login/loginBtn.png) no-repeat;top:426px;left:439px;}
+label.error{position:absolute;top:41px;left:31px;font-size:14px;}
+.checkWrap{display:inline-block;top:220px;left:420px;position:absolute;color: #e6393d;font-size:14px;margin-left: 10px;color: #e6393d;height: 16px;line-height: 16px;padding: 2px 1px;}

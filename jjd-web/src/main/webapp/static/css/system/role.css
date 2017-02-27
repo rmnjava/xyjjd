@@ -1,0 +1,29 @@
+.r_main{
+	margin:5px 10px;
+}
+.r_main .r_tr{
+	clear:both;
+	height:30px;
+}
+.r_main .r_field{
+	float:left;
+	display:inline;
+	line-height:30px;
+}
+.r_main .r_value{
+	float:left;
+	display:inline;
+	margin-left:10px;
+}
+.r_main .r_value input{
+	display:block;margin-top:4px;
+}
+.r_main .r_value .r_tree{
+	display:block;margin-top:8px;
+}
+.r_main .r_save{
+	float:left;
+	display:inline;
+	margin-left:80px;
+	
+}
